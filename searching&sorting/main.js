@@ -113,6 +113,37 @@ function mergeSortedArray(a1, a2) {
 }
 // console.log(mergeSortedArray([1, 4, 5], [2, 3, 6]));
 
+var isPalindrome = function (head) {
+    // find the middle element
+    let slow = head
+    let fast = head
+    while (fast && fast.next) {
+        slow = slow.next
+        fast = fast.next.next
+    }
 
+    // reverse 2nd half
+    let prev = null
+    let curr = slow
+    while (curr) {
+        let temp = curr.next
+        curr.next = prev
+        prev = curr
+        curr = temp
+    }
+
+    // check palindrome
+    let n = head
+    while ( prev !== null) {
+        if (n.val == prev.val) {
+            n = n.next
+            prev = prev.next
+        }
+        else {
+            return false
+        }
+    }
+    return true
+};
 
 
