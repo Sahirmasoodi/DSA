@@ -297,6 +297,7 @@ var hasCycle = function(head) {
    return false
 };
 
+
 var removeElements = function (head, val) {
  let sentinal = new ListNode(0,head)
  let curr = sentinal
