@@ -285,28 +285,42 @@ function insertion(arr) {
  * @param {ListNode} head
  * @return {boolean}
  */
-var hasCycle = function(head) {
-   let map = new Set()
-   let curr = head
-   while(curr){
-    if(map.has(curr)) return true
-    map.add(curr)
-    curr= curr.next
-
-   }
-   return false
+var hasCycle = function (head) {
+  let map = new Set();
+  let curr = head;
+  while (curr) {
+    if (map.has(curr)) return true;
+    map.add(curr);
+    curr = curr.next;
+  }
+  return false;
 };
 
-
+function ListNode(val, next) {
+  this.val = val === undefined ? 0 : val;
+  this.next = next === undefined ? null : next;
+}
 var removeElements = function (head, val) {
- let sentinal = new ListNode(0,head)
- let curr = sentinal
- while(curr && curr.next){
-    if(curr.next.val==val){
-        curr.next = curr.next.next
-    } else{
-        curr= curr.next
+  let sentinal = new ListNode(0, head);
+  let curr = sentinal;
+  while (curr && curr.next) {
+    if (curr.next.val == val) {
+      curr.next = curr.next.next;
+    } else {
+      curr = curr.next;
     }
- }
- return sentinal.next
+  }
+  return sentinal.next;
 };
+
+var removeNthFromEnd = function (head, n) {
+  let sentinel = new ListNode();
+  let length = 0;
+  let curr = head;
+  while (curr) {
+    length++;
+    curr = curr.next;
+  }
+  let l = length - n;
+};
+console.log(removeNthFromEnd([1, 2, 3, 4, 5]));
