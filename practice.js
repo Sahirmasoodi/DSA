@@ -322,5 +322,9 @@ var removeNthFromEnd = function (head, n) {
     curr = curr.next;
   }
   let l = length - n;
+  console.log(l);
+  
 };
-console.log(removeNthFromEnd([1, 2, 3, 4, 5]));
+
+// console.log(Math.floor(12%10));
+
