@@ -341,16 +341,40 @@ var findWordsContaining = function (words, x) {
 };
 // console.log(findWordsContaining(["leet", "code"], "e"));
 var numJewelsInStones = function (jewels, stones) {
-    let map = new Set()
-    let count = 0
-    for (let i = 0; i < jewels.length; i++) {
-        map.add(jewels[i])
+  let map = new Set();
+  let count = 0;
+  for (let i = 0; i < jewels.length; i++) {
+    map.add(jewels[i]);
+  }
+  for (let i = 0; i < stones.length; i++) {
+    if (map.has(stones[i])) {
+      count++;
     }
-    for (let i = 0; i < stones.length; i++) {
-        if(map.has(stones[i])){
-            count++
-        }
-    }
+  }
 
-    return count
+  return count;
 };
+
+var maxFreqSum = function (s) {
+  let map = {};
+  for (let i = 0; i < s.length; i++) {
+    if (map[s[i]]) {
+      map[s[i]] = map[s[i]] + 1;
+    } else {
+      map[s[i]] = 1;
+    }
+  }
+
+  let l1 = 0;
+  let l2 = 0;
+
+  for (let i in map) {
+    if (["a", "e", "i", "o", "u"].includes(i)) {
+      l1 = l1 < map[i] ? map[i] : l1;
+    } else if (l2 < map[i]) {
+      l2 = map[i];
+    }
+  }
+  return l1 + l2;
+};
+console.log(maxFreqSum("aeiaeia"));
