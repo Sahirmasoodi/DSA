@@ -377,4 +377,17 @@ var maxFreqSum = function (s) {
   }
   return l1 + l2;
 };
-console.log(maxFreqSum("aeiaeia"));
+// console.log(maxFreqSum("aeiaeia"));
+
+var reverseStr = function (s, k) {
+    s = s.split("")
+    for (let i = 0; i < s.length; i = i + (2 * k)) {
+        let mid = Math.floor(k / 2)
+        for (let j = 0; j < mid; j++) {
+            let temp = s[i + j]
+            s[i + j] = s[i+ k-j - 1]
+            s[i+ k-j - 1] = temp
+        }
+    }
+    return s.join("")
+};
