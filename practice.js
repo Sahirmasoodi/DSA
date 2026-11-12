@@ -380,14 +380,63 @@ var maxFreqSum = function (s) {
 // console.log(maxFreqSum("aeiaeia"));
 
 var reverseStr = function (s, k) {
-    s = s.split("")
-    for (let i = 0; i < s.length; i = i + (2 * k)) {
-        let mid = Math.floor(k / 2)
-        for (let j = 0; j < mid; j++) {
-            let temp = s[i + j]
-            s[i + j] = s[i+ k-j - 1]
-            s[i+ k-j - 1] = temp
-        }
+  s = s.split("");
+  for (let i = 0; i < s.length; i = i + 2 * k) {
+    let mid = Math.floor(k / 2);
+    for (let j = 0; j < mid; j++) {
+      let temp = s[i + j];
+      s[i + j] = s[i + k - j - 1];
+      s[i + k - j - 1] = temp;
     }
-    return s.join("")
+  }
+  return s.join("");
 };
+
+var isPalindrome = function (s) {
+  s = s.toLowerCase();
+  let i = 0;
+  let e = s.length - 1;
+  while (i < e) {
+    if (!s[i].match(/[a-z0-9]/)) {
+      i++;
+    } else if (!s[e].match(/[a-z0-9]/)) {
+      e--;
+    } else if (s[i] !== s[e]) {
+      return false;
+    } else {
+      i++;
+      e--;
+    }
+  }
+  return true;
+};
+// console.log(isPalindrome("A man, a plan, a canal: Panama"));
+// console.log(Math.floor("32476"/10));
+
+var largestOddNumber = function (num) {
+  if (num % 2 !== 0) return num;
+  let n = num;
+  for (let i = num.length - 1; i >= 0; i--) {
+    if (num[i] % 2 == 0) {
+      n = Math.floor(n / 10);
+      console.log(i);
+    } else {
+      break;
+    }
+  }
+  return `${n}`;
+};
+// console.log(largestOddNumber("3542272722120"));
+
+let map ={
+  "a":"1",
+  "b":"2",
+  "c":"3",
+  "d":"4"
+}
+for (let i = 0; i < 4; i++) {
+  console.log(map["a"[i]]);
+  
+  
+}
+
