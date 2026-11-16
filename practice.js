@@ -428,15 +428,43 @@ var largestOddNumber = function (num) {
 };
 // console.log(largestOddNumber("3542272722120"));
 
-let map ={
-  "a":"1",
-  "b":"2",
-  "c":"3",
-  "d":"4"
-}
-for (let i = 0; i < 4; i++) {
-  console.log(map["a"[i]]);
-  
-  
-}
+var groupAnagrams = function (strs) {
+  let map = {};
+  for (let i = 0; i < strs.length; i++) {
+    if (map[strs[i].split("").sort().join("")]) {
+      map[strs[i].split("").sort().join("")] = [
+        ...map[strs[i].split("").sort().join("")],
+        strs[i],
+      ];
+    } else {
+      map[strs[i].split("").sort().join("")] = [strs[i]];
+    }
+  }
 
+  return Object.values(map);
+};
+
+// console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
+
+var isValid = function (s) {
+  let map = {
+    "(": ")",
+    "[": "]",
+    "{": "}",
+  };
+  let stack = [];
+
+  for (let i = 0; i < s.length; i++) {
+    if (["(", "{", "["].includes(s[i])) {
+      stack.push(s[i]);
+    } else {
+      let ele = stack.pop();
+      if (map[ele] !== s[i]) {
+        return false;
+      }
+    }
+  }
+  console.log(stack);
+  return true;
+};
+console.log(isValid("(({}))"));
