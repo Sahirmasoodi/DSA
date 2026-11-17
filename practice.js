@@ -467,4 +467,85 @@ var isValid = function (s) {
   console.log(stack);
   return true;
 };
-console.log(isValid("(({}))"));
+// console.log(isValid("(({}))"));
+var removeOuterParentheses = function (s) {
+  let stack = [];
+  let res = "";
+
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] == "(") {
+      stack.push(s[i]);
+      if (stack.length > 1) res = res + s[i];
+    } else {
+      if (stack.length > 1) res = res + s[i];
+      stack.pop();
+    }
+  }
+  return res;
+};
+// console.log(removeOuterParentheses("(()())(())"));
+var evalRPN = function (tokens) {
+  let stack = [];
+  for (let i = 0; i < tokens.length; i++) {
+    if (!["+", "-", "/", "*"].includes(tokens[i])) {
+      stack.push(Number(tokens[i]));
+    } else {
+      let a = stack.pop();
+      let b = stack.pop();
+      let res;
+      switch (tokens[i]) {
+        case "+":
+          res = a + b;
+          break;
+        case "-":
+          res = b - a;
+          break;
+        case "*":
+          res = a * b;
+          break;
+
+        case "/":
+          res = b / a;
+          break;
+      }
+      stack.push(res);
+    }
+  }
+  return stack.pop();
+};
+// var evalRPN = function (tokens) {
+//   let stack = [];
+//   for (let i = 0; i < tokens.length; i++) {
+//     if (!["+", "-", "/", "*"].includes(tokens[i])) {
+//       stack.push(Number(tokens[i]));
+//     } else {
+//       let a = stack.pop();
+//       let b = stack.pop();
+//       let res = eval(`${b}${tokens[i]}${a}`);
+//       stack.push(Math.trunc(res));
+//     }
+//   }
+//   return stack.pop();
+// };
+// console.log(evalRPN(["2", "1", "+", "3", "*"]));
+
+var nextGreaterElement = function (nums1, nums2) {
+  let res = [];
+
+  for (let i = 0; i < nums1.length; i++) {
+    let x = -1;
+    let y = false;
+    for (let j = 0; j < nums2.length; j++) {
+      if (nums2[j] == nums1[i]) y = true;
+      console.log(i, j, y);
+
+      if (y && nums2[j] > nums1[i]) {
+        x = nums2[j];
+        break;
+      }
+    }
+    res.push(x);
+  }
+  return res;
+};
+console.log(nextGreaterElement([2, 4], [1, 2, 3, 4]));
