@@ -548,4 +548,74 @@ var nextGreaterElement = function (nums1, nums2) {
   }
   return res;
 };
-console.log(nextGreaterElement([2, 4], [1, 2, 3, 4]));
+// var nextGreaterElement = function (nums1, nums2) {
+//   let stack = [];
+
+// };
+// console.log(nextGreaterElement([2, 4], [1, 2, 3, 4]));
+
+var isPerfectSquare = function (num) {
+  for (let i = 0; i < num; i++) {
+    let res = i * i;
+    if (res == num) {
+      return true;
+    }
+    if (res > num) return false;
+  }
+  return false;
+};
+// console.log(isPerfectSquare(8));
+
+var nextGreaterElement = function (nums1, nums2) {
+  let map = {};
+  let s = [];
+  s.push(nums2[nums2.length - 1]);
+  map[nums2[nums2.length - 1]] = -1;
+
+  for (let i = nums2.length - 2; i >= 0; i--) {
+    if (nums2[i] < s[s.length - 1]) {
+      map[nums2[i]] = s[s.length - 1];
+      s.push(nums2[i]);
+    } else {
+      while (s.length) {
+        if (s[s.length - 1] < nums2[i]) {
+          s.pop();
+        } else {
+          map[nums2[i]] = s[s.length - 1];
+          break;
+        }
+      }
+      if (!s.length) map[nums2[i]] = -1;
+      s.push(nums2[i]);
+    }
+  }
+  for (let i = 0; i < nums1.length; i++) {
+    if (map[nums1[i]]) {
+      nums1[i] = map[nums1[i]];
+    }
+  }
+  return nums1;
+};
+// console.log(nextGreaterElement([2, 4], [1, 2, 3, 4]));
+// [4,1,2] [1,3,4,2,6]
+
+var dailyTemperatures = function (t) {
+  let n = t.length;
+  let s = [];
+  s.push(n - 1);
+  let ans = Array(n).fill(0);
+  for (let i = n - 2; i >= 0; i--) {
+    while (s.length) {
+      let top = s[s.length - 1];
+      if (t[top] > t[i]) {
+        ans[i] = top - i;
+        break;
+      } else {
+        s.pop();
+      }
+    }
+    s.push(i);
+  }
+  return ans;
+};
+// console.log(dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]));
