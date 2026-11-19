@@ -619,3 +619,27 @@ var dailyTemperatures = function (t) {
   return ans;
 };
 // console.log(dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]));
+var nextGreaterElements2 = function (nums) {
+  let arr = [...nums, ...nums];
+  let n = arr.length;
+  let stack = [];
+  stack.push(arr[n - 1]);
+  let ans = Array(n).fill(-1);
+  ans[n - 1] = -1;
+
+  for (let i = n - 2; i >= 0; i--) {
+    while (stack.length) {
+      let top = stack[stack.length - 1];
+      if (top > arr[i]) {
+        ans[i] = top;
+        break;
+      } else {
+        stack.pop();
+      }
+    }
+    stack.push(arr[i]);
+  }
+
+  return ans.slice(0, nums.length);
+};
+console.log(nextGreaterElements2([1, 2, 3, 4, 3]));
