@@ -693,3 +693,15 @@ var orangesRotting = function (grid) {
 console.log(
   orangesRotting([[2,1,1],[1,1,0]]),
 );
+var mySqrt = function (x) {
+    if(x==0) return 0
+    for (let i = 0; i <= x; i++) {
+        let y = i * i
+        if (y == x) {
+            return i
+        }
+        if (y > x) {
+            return i - 1
+        }
+    }
+};
